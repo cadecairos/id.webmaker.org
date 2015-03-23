@@ -35,6 +35,14 @@ module.exports = function(options) {
           }
           reply(user);
         });
+      },
+      config: {
+        validate: {
+          payload: {
+            password: Joi.string().trim(),
+            uid: Joi.alternatives().try(Joi.string().email(), joi.string().max(20))
+          }
+        }
       }
     }, {
       method: 'POST',
